@@ -1,79 +1,67 @@
- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LycaClient</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>LycaClient ️🦋</h1>
-        <div class="controls-wrapper">
-        <div class="theme-switcher">
-            <button class="theme-btn" onclick="document.body.setAttribute('data-theme', 'light')">☀️ Light</button>
-            <button class="theme-btn" onclick="document.body.removeAttribute('data-theme')">🌙 Dark</button>
-            <button class="theme-btn" onclick="document.body.setAttribute('data-theme', 'midnight')">🌌 Midnight</button>
-        </div>
+        <h1 style="color:#59AFFF; margin-bottom: 10px;">LycaClient</h1>
         <div class="search-box">
-            <input type="text" id="handleInput" placeholder="Enter handle (e.g. jay.bsky.social)">
-            <button onclick="fetchUserData()">Search</button>
+            <input type="text" id="handleInput" placeholder="Enter handle (e.g. jay.bsky.social)" style="width: 70%; display: inline-block;">
+            <button onclick="fetchUserData()" style="width: 25%; display: inline-block;">Search</button>
         </div>
-        <div id="authCard" class="login-wrapper card">
-        <div id="loginForm" class="login-grid">
-            <input type="text" id="loginHandle" placeholder="Your handle">
-            <input type="password" id="loginPassword" placeholder="App Password">
-            <button onclick="loginUser()">Login</button>
+        
+        <div id="authCard" class="card">
+            <div id="loginForm">
+                <input type="text" id="loginHandle" placeholder="Your handle">
+                <input type="password" id="loginPassword" placeholder="App Password">
+                <button onclick="loginUser()">Login</button>
+            </div>
+            <div id="loginStatus" class="hidden">
+                <span class="stat-item">Logged in as <b id="loggedInName"></b></span>
+                <button onclick="logoutUser()">Logout</button>
+            </div>
         </div>
-        <div id="loginStatus" class="hidden logged-in-bar">
-            <span class="stat-item">✅ Logged in as <b id="loggedInName"></b></span>
-            <button class="logout-btn" onclick="logoutUser()">Logout</button>
-        </div>
-    </div>
 
-      <div id="postComposer" class="card hidden" style="margin-bottom: 20px;">
-    <h3 style="margin-top: 0; color: var(--accent);">Create a Post</h3>
-    <textarea id="new-post-input" class="reply-input" placeholder="What's up?"></textarea>
-    <div style="display: flex; justify-content: flex-end; margin-top: 10px;">
-        <button class="submit-reply-btn" onclick="submitPost()">Post</button>
-    </div>
-</div>
+        <div id="postComposer" class="card hidden">
+            <h3 style="margin-top:0;">Create a Post</h3>
+            <textarea id="new-post-input" placeholder="What's up?"></textarea>
+            <div class="align-right"><button onclick="submitPost()">Post</button></div>
+        </div>
+
         <div id="profileCard" class="card hidden">
-            <div class="header">
-                <img id="pfp" src="" alt="Profile Picture">
+            <div class="clear-fix">
+                <img id="pfp" src="" alt="PFP">
                 <div class="user-info">
-<div class="name-wrapper">
-    <h2 id="displayName"></h2>
-    
-    <svg id="verifiedBadge" class="verified-badge hidden" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-    </svg>
-
-    <svg id="trustedBadge" class="verified-badge hidden" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-        <path d="M12 1L9.7 3.3H6.5V6.5L4.2 8.8L4.2 12L1.9 14.3L1.9 17.5H5.1V20.7L7.4 23L10.6 23L12.9 25.3L15.2 23L18.4 23V19.8L20.7 17.5L20.7 14.3L23 12L23 8.8L20.7 6.5V3.3H17.5L15.2 1L12 1ZM10.5 16.5L6.5 12.5L7.9 11.1L10.5 13.7L16.1 8.1L17.5 9.5L10.5 16.5Z" transform="scale(0.9)"></path>
-    </svg>
-</div>
-    <p id="handle"></p>
-</div>
+                    <h2 id="displayName"></h2>
+                    <p id="handle"></p>
+                </div>
             </div>
             <p id="bio"></p>
-            <div class="stats">
-                <span><b id="followers">0</b> Followers</span>
-                <span><b id="following">0</b> Following</span>
-                <span><b id="postsCount">0</b> Posts</span>
+            <div class="stats clear-fix">
+                <div class="stat-box"><b id="followers">0</b><br>Followers</div>
+                <div class="stat-box"><b id="following">0</b><br>Following</div>
+                <div class="stat-box"><b id="postsCount">0</b><br>Posts</div>
             </div>
-            <hr>
-            <h3>Latest Posts</h3>
+            <hr style="border:1px solid #1e1f22; margin: 15px 0;">
+            <h3 style="margin-top:0;">Latest Posts</h3>
             <div id="feed"></div>
-            <div id="scrollSentinel" class="hidden">Loading more posts... ☁️</div>
-        </div>
+            <button id="loadMoreBtn" class="hidden" onclick="loadMorePosts()" style="width:100%;">Load More Posts️</button>
         </div>
     </div>
+    
+    <div id="toastContainer"></div>
+    
+    <div id="lightbox" class="hidden" onclick="closeLightbox()">
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="Enlarged view">
+            <p style="color:#ccc;">Click anywhere to close</p>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
-    <div id="toastContainer" class="toast-container"></div>
-<div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
-    <span class="close-lightbox">&times;</span>
-    <img id="lightboxImg" src="" alt="Enlarged view">
-</div>
 </body>
 </html>
