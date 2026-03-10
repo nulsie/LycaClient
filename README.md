@@ -23,4 +23,18 @@ I wanted this to be as efficient as possible, so I kept the stack "vanilla":
 
 * **Vanilla JS**: No heavy frameworks.
 * **CSS 3**: Custom properties and smooth transitions.
-* **AT Protocol(Bsky API)**: Direct interaction with the Bluesky/Atproto XRPC endpoinhea`
+* **AT Protocol(Bsky API)**: Direct interaction with the Bluesky/Atproto XRPC endpoints.
+
+---
+
+### Quick start
+
+Since this is a lightweight client, there’s `no npm` install headache.
+
+1. Clone the repo: `git clone https://github.com/nulsie/LycaClient.git`
+2. Open `index.html` in any modern browser.
+3. Enter a handle and start exploring.
+
+---
+
+This project is open-source. Feel free to fork it, break it, and make it yours. :) 
