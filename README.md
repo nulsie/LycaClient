@@ -6,7 +6,7 @@ I built **LycaClient v.Feather** because the modern web is leaving too many peop
 
 ---
 
-# The Idea
+### The Idea
 
 * **Search-First, Not Algorithm-First**: Like the original LycaClient, Feather doesn't tell you what to see. You search for the handles you want to follow. You control the feed.
 * **No Frameworks**: No React, no Vue, no nonsense. It’s written in raw, vanilla JavaScript using `XMLHttpRequest` for maximum compatibility with legacy browsers.
