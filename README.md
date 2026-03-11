@@ -29,7 +29,7 @@ I wanted this to be as efficient as possible, so I kept the stack "vanilla":
 
 ### Quick start
 
-Since this is a lightweight client, there’s `no npm` install headache.
+Since this is a lightweight client, there’s no `npm` install headache.
 
 1. Clone the repo: `git clone https://github.com/nulsie/LycaClient.git`
 2. Open `index.html` in any modern browser.
