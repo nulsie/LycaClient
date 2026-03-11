@@ -752,3 +752,30 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     white-space: pre-wrap; /* Keeps user formatting */
     line-height: 1.4;
 }
+.app-footer {
+    font-size: 10px;      /* Makes the text much smaller */
+    color: #888888;       /* Optional: lightens the color so it's less distracting */
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 30px;
+}
+.app-footer p {
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.app-footer b {
+    color: var(--accent); /* Makes the version number pop slightly */
+}
+
+/* If you ever want to add links to your footer */
+.app-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.app-footer a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
