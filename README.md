@@ -2,7 +2,7 @@
 
 I built **LycaClient v.Feather** because the modern web is leaving too many people behind. Most social media apps today are bloated with tracking scripts, heavy frameworks, and aggressive algorithms that choke older hardware.
 
-**Feather** is the "ultra-light" sibling to the main LycaClient. It is designed specifically for low-resource environments and devices as old as **15 years**. Whether you're reviving an old 2011 netbook, an early Android tablet, or just living with a painfully slow data connection, Feather is meant to keep you connected to the AT Protocol (Bluesky) without the lag.
+**Feather** is the "ultra-light" sibling to the main LycaClient. It is designed specifically for low-resource environments and devices as old as **15 years**. Whether you're reviving an old 2011 netbook, an early Android tablet, or just living with a painfully slow data connection, Feather is meant to keep you connected to the AT Protocol (Bluesky) without the lag. But the theme, styling and some functions are not as good as the other one which was a compromise for compatibility with older systems.
 
 ---
 
