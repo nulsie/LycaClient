@@ -38,4 +38,6 @@ Since this is a lightweight client, there’s no `npm` install headache.
 
 ---
 
-This project is open-source. Feel free to fork it, break it, and make it yours. :) 
+This project is open-source. Feel free to fork it, break it, and make it yours. :)
+
+**Look**: And if you want a version which works on devices as old as 15 years old, get the [**Feather**](https://github.com/nulsie/LycaClient/tree/v.Feather) version of LycaClient.
