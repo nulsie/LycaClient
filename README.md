@@ -31,4 +31,5 @@ As same as before:
 ---
 
 again saying that this project is open-source. Feel free to fork it, break it, and make it yours. :)
-t.
+
+**Look**: the [Feather](https://github.com/nulsie/LycaClient/tree/v.Feather) version of LycaClient is still there.
