@@ -1,26 +1,18 @@
-# LycaClient v.1.1
+# LycaClient v.1.2
 
-LycaClient is an open-source, lightweight Bluesky client built on a simple premise: You should find people, not the other way around. There is no "Discover" tab here. There is no "For You" algorithm. There is just a search bar and the people you actually want to see.
-
-* **Search-First**: Content only appears when you look for it.
-* **Zero Noise**: No suggested posts, no ads, no "engagement" traps.
-* **Total Transparency**: Every post has a `JSON` button so you can see exactly what the AT Protocol is sending your way.
+The second version is here, i've added two new features and made the structure and readability of the code better.
 
 ---
 
-### Features
+### What's new in v.1.2? 
 
-* **Triple-Themed**: Choose between **Light**, **Dark**, or **Midnight** (Pure AMOLED).
-* **Authentication**: Login securely with App Passwords to Like, Reply, and Post.
-* **Infinite Scroll**: Smooth, cursor-based pagination that loads only when you're ready.
-* **Verification-Aware**: Visual indicators for verified accounts and trusted verifiers and robust verification system adopted from Bsky.
-* **Responsive Post, Comment and Like Features**: they are really fast here. 
+* **HLS Video Support**: Now the client supports videos through **HLS**.
+* **Facet Parsing**: v.1.2, unlike v.1.1 supports and parses facets like **hashtags, mentions and links** and makes them interact.
+* **Better code readability**: i think i've made the [script.js](https://github.com/nulsie/LycaClient/blob/v.1.2/script.js) more readable and better structured.
 
 ---
 
-### Built with
-
-I wanted this to be as efficient as possible, so I kept the stack "vanilla":
+### Built with the same stuff
 
 * **Vanilla JS**: No heavy frameworks.
 * **CSS 3**: Custom properties and smooth transitions.
@@ -28,9 +20,9 @@ I wanted this to be as efficient as possible, so I kept the stack "vanilla":
 
 ---
 
-### Quick start
+### How to start using
 
-Since this is a lightweight client, there’s no `npm` install headache.
+As same as before:
 
 1. Clone the repo: `git clone https://github.com/nulsie/LycaClient.git`
 2. Open `index.html` in any modern browser.
@@ -38,6 +30,5 @@ Since this is a lightweight client, there’s no `npm` install headache.
 
 ---
 
-This project is open-source. Feel free to fork it, break it, and make it yours. :)
-
-**Look**: And if you want a version which works on devices as old as 16 years, get the [**Feather**](https://github.com/nulsie/LycaClient/tree/v.Feather) version of LycaClient.
+again saying that this project is open-source. Feel free to fork it, break it, and make it yours. :)
+t.
