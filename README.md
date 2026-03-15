@@ -8,7 +8,7 @@ The second version is here, i've added two new features and made the structure a
 
 * **HLS Video Support**: Now the client supports videos through **HLS**.
 * **Facet Parsing**: v.1.2, unlike v.1.1 supports and parses facets like **hashtags, mentions and links** and makes them interact.
-* **Better code readability**: i think i've made the [script.js](https://github.com/nulsie/LycaClient/blob/v.1.2/script.js) more readable and better structured.
+* **Better code readability**: i think i've made the [**script.js**](https://github.com/nulsie/LycaClient/blob/v.1.2/script.js) more readable and better structured.
 
 ---
 
@@ -32,4 +32,4 @@ As same as before:
 
 again saying that this project is open-source. Feel free to fork it, break it, and make it yours. :)
 
-**Look**: the [Feather](https://github.com/nulsie/LycaClient/tree/v.Feather) version of LycaClient is still there.
+**Look**: the [**Feather**](https://github.com/nulsie/LycaClient/tree/v.Feather) version of LycaClient is still there.
