@@ -1,19 +1,19 @@
-/* 폰 Font Import for that crisp, modern look */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* 🎨 BASE VARIABLES (Default: Discord Dark Mode) */
+
 :root {
     --bg: #313338; 
     --card-bg: #2b2d31;
     --border-color: transparent;
-    --accent: #0085ff; /* Discord Blurple */
+    --accent: #0085ff; 
     --accent-hover: #006bce;
     --text-main: #f2f3f5;
     --text-muted: #b5bac1;
     --input-bg: #1e1f22;
 }
 
-/* ☀️ LIGHT MODE (Flashbang) */
+
 [data-theme="light"] {
     --bg: #f2f3f5;
     --card-bg: #ffffff;
@@ -25,19 +25,19 @@
     --input-bg: #e3e5e8;
 }
 
-/* 🌌 MIDNIGHT MODE (AMOLED Black) */
+
 [data-theme="midnight"] {
     --bg: #000000;
     --card-bg: #111214;
     --border-color: #1e1f22;
-    --accent: #0085ff; /* Keeping your sharp cyan for midnight */
+    --accent: #0085ff; 
     --accent-hover: #006bce;
     --text-main: #f2f3f5;
     --text-muted: #80848e;
     --input-bg: #1e1f22;
 }
 
-/* 🌍 GENERAL STYLING */
+
 body {
     background-color: var(--bg);
     color: var(--text-main);
@@ -51,23 +51,23 @@ body {
 }
 
 h1 {
-    /* Bluesky Gradient */
+    
     background: linear-gradient(90deg, #0085FF, #59AFFF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     
-    /* Smooth transition for the glow and a subtle pop */
+    
     transition: filter 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
 }
 
 h1:hover {
-    /* The Glow Effect */
+    
     filter: drop-shadow(0 0 15px rgba(0, 133, 255, 0.7));
     transform: scale(1.02);
 }
 
-/* ✨ CUSTOM SCROLLBARS ✨ */
+
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--input-bg); border-radius: 4px; }
@@ -75,7 +75,7 @@ h1:hover {
 
 .container { width: 100%; max-width: 650px; text-align: center; }
 
-/* 🔍 SEARCH BOX & CONTROLS */
+
 .controls-wrapper {
     display: flex;
     flex-direction: column;
@@ -89,18 +89,18 @@ input {
     flex: 1;
     padding: 14px 16px;
     border-radius: 12px;
-    /* This is the Bluesky Blue with 15% opacity */
+    
     background: rgba(0, 133, 255, 0.15); 
-    /* A subtle border to give it shape */
+    
     border: 1px solid rgba(0, 133, 255, 0.3); 
     color: var(--text-main);
     font-size: 1rem;
     outline: none;
-    backdrop-filter: blur(4px); /* Makes it look premium */
+    backdrop-filter: blur(4px); 
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
  input:focus { 
-    /* Brighter blue when typing */
+    
     background: rgba(0, 133, 255, 0.25);
     border-color: #0085ff;
     box-shadow: 0 0 15px rgba(0, 133, 255, 0.4);
@@ -129,7 +129,7 @@ button:hover {
 }
 button:active { transform: scale(0.95); }
 
-/* 🎛️ THEME SWITCHER BUTTONS */
+
 .theme-switcher {
     display: flex;
     justify-content: center;
@@ -147,13 +147,13 @@ button:active { transform: scale(0.95); }
 }
 .theme-btn:hover { background: var(--input-bg); transform: translateY(-2px); }
 
-/* 🎬 ANIMATIONS */
+
 @keyframes slideUpFade {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* 💳 CARD & PROFILE */
+
 .card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -206,7 +206,7 @@ button:active { transform: scale(0.95); }
 hr { border: 0; height: 1px; background: var(--border-color); margin: 25px 0; }
 h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
 
-/* 📝 POSTS */
+
 .post {
     background: var(--input-bg);
     padding: 20px;
@@ -255,7 +255,7 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
 }
 .post-link:hover { opacity: 0.8; text-decoration: underline; transform: translateX(3px); }
 
-/* 📱 MOBILE RESPONSIVENESS */
+
 @media (max-width: 500px) {
     .search-box { flex-direction: column; }
     button { width: 100%; }
@@ -280,41 +280,40 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     color: var(--accent-hover);
     text-decoration: underline;
 }
- /* 🏆 VERIFIED BADGE */
-.name-wrapper {
+ .name-wrapper {
     display: flex;
     align-items: center;
-    gap: 6px; /* Space between name and badge */
+    gap: 6px; 
 }
 
 .verified-badge {
     flex-shrink: 0;
-    margin-top: 2px; /* Slight alignment fix */
+    margin-top: 2px; 
 }
 
 .hidden {
     display: none !important;
 }
-/* ✨ FLOATING VERIFIED POPUP ✨ */
+
 .name-wrapper {
-    position: relative; /* This ensures the popup anchors to the name area */
+    position: relative; 
 }
 
 .verified-popup {
     position: absolute;
-    /* Position it right above the badge */
+    
     bottom: 110%; 
-    left: 80px; /* Adjust this to center over the badge specifically */
+    left: 80px; 
     background: #0085ff; 
     color: white;
     padding: 4px 10px;
     border-radius: 8px;
     font-size: 0.75rem;
     font-weight: bold;
-    pointer-events: none; /* So it doesn't interrupt clicks */
+    pointer-events: none; 
     white-space: nowrap;
     box-shadow: 0 4px 12px rgba(0, 133, 255, 0.4);
-    /* Run the animation we define below */
+    
     animation: floatUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     z-index: 100;
 }
@@ -339,17 +338,17 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     background: var(--accent);
     color: white;
 }
- /* 🔒 LOGIN STYLES *//* 🔒 UPGRADED LOGIN STYLES */
+ 
 .login-wrapper.card {
     padding: 20px;
-    margin-top: 0; /* Align tightly under search */
-    border: 1px dashed rgba(0, 133, 255, 0.3); /* Subtle "account" area feel */
+    margin-top: 0; 
+    border: 1px dashed rgba(0, 133, 255, 0.3); 
     background: rgba(var(--card-bg), 0.5);
 }
 
 .login-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr auto; /* Desktop: Two inputs and a button */
+    grid-template-columns: 1fr 1fr auto; 
     gap: 12px;
     align-items: center;
 }
@@ -374,10 +373,10 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     color: white;
 }
 
-/* 📱 MOBILE FIXES FOR LOGIN */
+
 @media (max-width: 600px) {
     .login-grid {
-        grid-template-columns: 1fr; /* Stack everything on mobile */
+        grid-template-columns: 1fr; 
     }
     
     .logged-in-bar {
@@ -400,18 +399,18 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     transition: color 0.2s, transform 0.2s;
 }
 .like-btn.active-like {
-    color: #f91880; /* The Bluesky/Twitter Like Pink */
+    color: #f91880; 
 }
 
 .like-btn:hover {
-    color: #f91880; /* Bluesky/Twitter Like Pink */
+    color: #f91880; 
     transform: scale(1.1);
 }
 
 .like-btn b {
     color: var(--text-main);
 }
- /* 🍞 TOAST NOTIFICATIONS */
+ 
 .toast-container {
     position: fixed;
     bottom: 20px;
@@ -451,7 +450,7 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
 @keyframes fadeOut {
     to { opacity: 0; transform: translateY(10px); }
 }
- /* 📖 READ MORE TOGGLE */
+ 
 .read-more-btn {
     background: transparent;
     border: none;
@@ -475,17 +474,17 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     margin-top: 0;
     line-height: 1.5;
     color: var(--text-main);
-    white-space: pre-wrap; /* Crucial for keeping Bluesky line breaks intact! */
+    white-space: pre-wrap; 
 }
 .post-actions {
     display: flex;
-    flex-direction: column; /* This stacks them vertically */
-    align-items: stretch;    /* Makes buttons full width */
-    gap: 8px;               /* Adds space between the buttons */
+    flex-direction: column; 
+    align-items: stretch;    
+    gap: 8px;               
     margin-top: 15px;
 }
 
-/* Ensure the buttons and links look consistent when stacked */
+
 .post-actions .post-link, 
 .post-actions .download-btn,
 .post-actions .reply-toggle-btn {
@@ -497,12 +496,12 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     border-radius: 8px;
 }
 
-/* Subtle background for the link to make it look like a button */
+
 .post-actions .post-link {
     background: rgba(0, 133, 255, 0.1);
     border: 1px solid transparent;
 }
-/* 📸 LIGHTBOX SYSTEM */
+
 .lightbox {
     position: fixed;
     z-index: 2000;
@@ -540,14 +539,14 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes zoomIn { from { transform: scale(0.9); } to { transform: scale(1); } }
-/* 💬 REPLY BOX STYLING */
+
 .reply-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: 15px;
     padding: 15px;
-    background: rgba(0, 0, 0, 0.15); /* Slight contrast background */
+    background: rgba(0, 0, 0, 0.15); 
     border-radius: 12px;
     border: 1px solid rgba(0, 133, 255, 0.2);
     animation: slideUpFade 0.3s ease forwards;
@@ -567,9 +566,9 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     color: var(--text-main);
     font-family: inherit;
     font-size: 0.95rem;
-    resize: vertical; /* Lets users drag it taller, but not wider */
+    resize: vertical; 
     outline: none;
-    box-sizing: border-box; /* Keeps it neatly inside the container */
+    box-sizing: border-box; 
     transition: all 0.3s ease;
 }
 
@@ -580,12 +579,12 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
 }
 
 .submit-reply-btn {
-    align-self: flex-end; /* Pushes the button neatly to the right */
+    align-self: flex-end; 
     padding: 10px 20px;
     font-size: 0.9rem;
     border-radius: 8px;
 }
- /* 🎴 EMBED & INNER CARDS */
+ 
 .embed-card {
     display: block;
     margin-top: 15px;
@@ -603,7 +602,6 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     border-color: var(--accent);
 }
 
-/* External Link Cards */
 .external-card {
     display: flex;
     flex-direction: column;
@@ -643,7 +641,7 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     text-transform: lowercase;
 }
 
-/* Quote Post Cards */
+
 .quote-card {
     padding: 12px;
     background: rgba(255, 255, 255, 0.03);
@@ -673,7 +671,7 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     margin: 0;
     color: var(--text-main);
 }
- /* 🕒 POST DATE */
+ 
 .post-date {
     font-size: 0.8rem;
     color: var(--text-muted);
@@ -684,7 +682,7 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     align-items: center;
     gap: 5px;
 }
- /* 💬 IN-FEED THREAD / REPLIES */
+ 
 .thread-container {
     margin-top: 15px;
     padding-top: 15px;
@@ -749,12 +747,12 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     margin: 0;
     color: var(--text-main);
     font-size: 0.9rem;
-    white-space: pre-wrap; /* Keeps user formatting */
+    white-space: pre-wrap; 
     line-height: 1.4;
 }
 .app-footer {
-    font-size: 10px;      /* Makes the text much smaller */
-    color: #888888;       /* Optional: lightens the color so it's less distracting */
+    font-size: 10px;      
+    color: #888888;       
     text-align: center;
     padding: 15px 0;
     margin-top: 30px;
@@ -765,10 +763,10 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
 }
 
 .app-footer b {
-    color: var(--accent); /* Makes the version number pop slightly */
+    color: var(--accent); 
 }
 
-/* If you ever want to add links to your footer */
+
 .app-footer a {
     color: var(--accent);
     text-decoration: none;
@@ -779,13 +777,13 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     color: var(--accent-hover);
     text-decoration: underline;
 }
- /* 🔗 FACET LINKS (Mentions, Tags, Links) */
+ 
 .facet-link {
     color: var(--accent);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s ease;
-    word-break: break-all; /* Stops insanely long URLs from stretching the card */
+    word-break: break-all; 
 }
 
 .facet-link:hover {
@@ -793,7 +791,7 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     text-decoration: underline;
 }
 
-/* 📖 UPGRADED READ MORE CLAMPING */
+
 .post-full {
     margin-top: 0;
     line-height: 1.5;
@@ -801,18 +799,18 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
     word-break: break-word; 
 }
 
-/* This safely hides excess HTML without cutting tags in half */
+
 .post-full.clamped {
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* Shows max 4 lines before hiding */
+    -webkit-line-clamp: 4; 
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
- /* 🎬 VIDEO PLAYER STYLING */
+ 
 .video-card {
     display: flex;
     justify-content: center;
-    background: #000; /* Black background for cinematic feel */
+    background: #000; 
     border-radius: 12px;
     overflow: hidden;
     margin-top: 15px;
@@ -821,8 +819,8 @@ h3 { margin-top: 0; color: var(--text-main); margin-bottom: 15px; }
 
 .post-video {
     width: 100%;
-    max-height: 400px; /* Prevents vertical videos from taking up the whole screen */
+    max-height: 400px; 
     border-radius: 12px;
-    object-fit: contain; /* Keeps the aspect ratio intact */
+    object-fit: contain; 
     outline: none;
 }
