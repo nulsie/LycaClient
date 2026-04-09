@@ -1,4 +1,5 @@
 # LycaClient v.1.2
+###### updated, and now v1.2.1
 
 The second version is here, i've added two new features and made the structure and readability of the code better.
 
