@@ -31,6 +31,17 @@ As same as before:
 
 ---
 
+### v1.2.1 is here
+
+i've added a minor update to v1.2 which fixes a bug and a new feature.
+
+#### What's new?
+
+* **bug fix:** fixed the bug which caused repetition of posts.
+* **GIF support:** now LycaClient supports the GIF format.
+
+and that's it. v1.3 will be there soon.
+
 again saying that this project is open-source. Feel free to fork it, break it, and make it yours. :)
 
 **Look**: the [**Feather**](https://github.com/nulsie/LycaClient/tree/v.Feather) version of LycaClient is still there.
