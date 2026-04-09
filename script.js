@@ -1,9 +1,8 @@
-// --- Authentication State ---
 const AUTH_API_BASE = "https://bsky.social/xrpc";
-let authSession = null; // Will store the JWT token and user DID
+let authSession = null; 
 const API_BASE = "https://public.api.bsky.app/xrpc";
 
-// --- State Variables for Infinite Scroll ---
+
 let currentHandle = "";
 let currentCursor = null;
 let currentProfile = null;
@@ -17,14 +16,14 @@ function showToast(message, type = 'info') {
 
     container.appendChild(toast);
 
-    // Auto-remove after 3 seconds
+    
     setTimeout(() => {
         toast.style.animation = 'fadeOut 0.5s ease forwards';
         setTimeout(() => toast.remove(), 500);
     }, 3000);
 }
 
-// --- Authentication Functions ---
+
 async function loginUser() {
     const handle = document.getElementById('loginHandle').value.trim();
     const password = document.getElementById('loginPassword').value.trim();
@@ -47,7 +46,7 @@ async function loginUser() {
 
         authSession = await res.json();
 
-        // UI Update
+        
         document.getElementById('loginForm').classList.add('hidden');
         document.getElementById('loginStatus').classList.remove('hidden');
         document.getElementById('loggedInName').innerText = `@${authSession.handle}`;
@@ -69,10 +68,10 @@ function logoutUser() {
     document.getElementById('loginHandle').value = '';
     document.getElementById('loginPassword').value = '';
     document.getElementById('postComposer').classList.add('hidden');
-    if (currentHandle) fetchUserData(); // Refresh to remove like buttons
+    if (currentHandle) fetchUserData(); 
 }
 
-// --- Intersection Observer Setup ---
+
 const observer = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting && currentCursor && !isLoading) {
         fetchPosts(true); 
@@ -83,22 +82,22 @@ async function fetchUserData() {
     const handle = document.getElementById('handleInput').value.trim();
     if (!handle) return showToast("Type a handle, genius!");
 
-    // Reset state for a fresh search
+    
     currentHandle = handle;
     currentCursor = null;
     document.getElementById('feed').innerHTML = ''; 
     
     try {
-        // 1. Fetch Profile Details
+        
         const profileRes = await fetch(`${API_BASE}/app.bsky.actor.getProfile?actor=${handle}`);
         if (!profileRes.ok) throw new Error("User not found");
         
         currentProfile = await profileRes.json();
         
-        // 2. Fetch Initial User Feed
+        
         await fetchPosts(false);
         
-        // Start observing the sentinel
+        
         const sentinel = document.getElementById('scrollSentinel');
         observer.observe(sentinel);
         
@@ -108,7 +107,7 @@ async function fetchUserData() {
     }
 }
 
-// Helper function to fetch posts
+
 async function fetchPosts(isPaginating = false) {
     if (!currentHandle) return;
     isLoading = true;
@@ -116,7 +115,7 @@ async function fetchPosts(isPaginating = false) {
     const sentinel = document.getElementById('scrollSentinel');
     if (isPaginating) sentinel.classList.remove('hidden');
 
-    // Dynamically use the Auth API if logged in, otherwise public API
+    
     const baseUrl = authSession ? AUTH_API_BASE : API_BASE;
     let url = `${baseUrl}/app.bsky.feed.getAuthorFeed?actor=${currentHandle}&limit=10`;
     
@@ -125,7 +124,7 @@ async function fetchPosts(isPaginating = false) {
     }
 
     try {
-        // Set up headers to include our token if we have one
+        
         const headers = {};
         if (authSession) {
             headers['Authorization'] = `Bearer ${authSession.accessJwt}`;
@@ -134,7 +133,7 @@ async function fetchPosts(isPaginating = false) {
         const feedRes = await fetch(url, { headers });
         const feedData = await feedRes.json();
 
-        // Save the cursor for the next batch.
+        
         currentCursor = feedData.cursor || null;
         
         updateUI(currentProfile, feedData.feed);
@@ -171,11 +170,11 @@ function updateUI(profile, posts) {
     const verifiedBadge = document.getElementById('verifiedBadge');
     const trustedBadge = document.getElementById('trustedBadge');
 
-    // Reset visibility
+    
     verifiedBadge.classList.add('hidden');
     trustedBadge.classList.add('hidden');
 
-    // Check official verification status
+    
     if (profile.verification) {
         if (profile.verification.verifiedStatus === 'valid') {
             verifiedBadge.classList.remove('hidden');
@@ -184,7 +183,7 @@ function updateUI(profile, posts) {
             trustedBadge.classList.remove('hidden');
         }
     } else if (profile.handle && !profile.handle.endsWith('.bsky.social')) {
-        // Fallback for custom domains
+        
         verifiedBadge.classList.remove('hidden');
     }
 
@@ -194,7 +193,7 @@ function updateUI(profile, posts) {
         const postDiv = document.createElement('div');
         postDiv.className = 'post';
 
-        // 1. Process Raw Text & Rkey
+        
         const rawText = item.post.record.text || "[No text]";
         const isLongText = rawText.length > 150;
 
@@ -217,7 +216,7 @@ function updateUI(profile, posts) {
         const rootUri = item.post.record.reply ? item.post.record.reply.root.uri : parentUri;
         const rootCid = item.post.record.reply ? item.post.record.reply.root.cid : parentCid;
 
-        // 2. Process Facets & HTML
+        
         const facets = item.post.record.facets || [];
         const richHtml = renderRichText(rawText, facets);
 
@@ -233,7 +232,7 @@ function updateUI(profile, posts) {
             textContentHtml = `<div class="post-full">${richHtml}</div>`;
         }
 
-        // 3. Process Like State
+        
         let likeButtonHtml = `❤️ <b>${likes}</b>`;
         if (authSession) {
             if (item.post.viewer && item.post.viewer.like) {
@@ -253,20 +252,20 @@ function updateUI(profile, posts) {
             }
         }
 
-// 4. Process Embeds
+
         let embedHtml = ''; 
-        let videoDataToInit = null; // Store video data to initialize after rendering
+        let videoDataToInit = null; 
 
         if (item.post.embed) {
             if (item.post.embed.$type === 'app.bsky.embed.images#view' || item.post.embed.images) {
-                // ... (Keep your existing image logic) ...
+                
                 embedHtml = `<div class="post-gallery">`;
                 item.post.embed.images.forEach(img => {
                     embedHtml += `<img src="${img.thumb}" class="post-img" alt="${img.alt || 'post image'}" onclick="openLightbox('${img.fullsize}')">`; 
                 });
                 embedHtml += `</div>`;
             } else if (item.post.embed.$type === 'app.bsky.embed.video#view') {
-                // 🎬 NEW: Video Embed Handling
+                
                 const video = item.post.embed;
                 const videoId = `bsky-video-${rkey}`;
                 
@@ -276,7 +275,7 @@ function updateUI(profile, posts) {
                     </div>
                 `;
                 
-                // Save the data to initialize the HLS player after the DOM updates
+                
                 videoDataToInit = { id: videoId, playlist: video.playlist };
 
 } else if (item.post.embed.$type === 'app.bsky.embed.external#view') {
@@ -294,7 +293,7 @@ function updateUI(profile, posts) {
 } else if (item.post.embed.$type === 'app.bsky.embed.record#view') {
             const record = item.post.embed.record;
             
-            // Check if it's a standard post record view
+            
             if (record.$type === 'app.bsky.embed.record#viewRecord') {
                 embedHtml = `
                     <div class="embed-card quote-card">
@@ -310,9 +309,9 @@ function updateUI(profile, posts) {
                 `;
             }
         }
-    } // ✅ ADD THIS BRACKET HERE to close the `if (item.post.embed)` block!
+    } 
 
-    // 5. Construct Final HTML
+    
     postDiv.innerHTML = `
         <div class="post-date">🕒 ${formattedDate}</div> 
         <div class="post-preview">${textContentHtml}</div>
@@ -343,7 +342,7 @@ function updateUI(profile, posts) {
     
     feedContainer.appendChild(postDiv);
     
-    // 🎬 NEW: Initialize HLS for the video if one exists in this post
+    
     if (videoDataToInit) {
         const videoElement = document.getElementById(videoDataToInit.id);
         if (videoElement) {
@@ -352,16 +351,16 @@ function updateUI(profile, posts) {
                 hls.loadSource(videoDataToInit.playlist);
                 hls.attachMedia(videoElement);
             }
-            // Fallback for Safari which supports native HLS
+            
             else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
                 videoElement.src = videoDataToInit.playlist;
             }
         }
     }
-  }); // ✅ CHANGE THIS from `}});` to just `});` to close the `posts.forEach` loop properly
+  }); 
 }
 
-// --- GLOBAL FUNCTIONS & LISTENERS ---
+
 
 function downloadPostJson(postData) {
     const jsonString = JSON.stringify(postData, null, 2);
@@ -380,7 +379,6 @@ function downloadPostJson(postData) {
     URL.revokeObjectURL(url);
 }
 
-// Global Event Listeners for Verified Badges
 function showBadgePopup(event, text) {
     if (document.querySelector('.verified-popup')) return;
 
@@ -399,7 +397,7 @@ function showBadgePopup(event, text) {
 document.getElementById('verifiedBadge').addEventListener('click', (e) => showBadgePopup(e, 'Verified Account'));
 document.getElementById('trustedBadge').addEventListener('click', (e) => showBadgePopup(e, 'Trusted Verifier'));
 
-// --- Like Functionality ---
+
 async function likePost(postUri, postCid, postRkey, currentLikes) {
     if (!authSession) return showToast("You must be logged in to like a post.");
 
@@ -428,7 +426,7 @@ async function likePost(postUri, postCid, postRkey, currentLikes) {
 
         const data = await res.json();
         
-        // Fixed: Properly extract URI parts
+        
         const uriParts = data.uri.split('/');
         const likeRkey = uriParts[uriParts.length - 1];
 
@@ -443,8 +441,6 @@ async function likePost(postUri, postCid, postRkey, currentLikes) {
         showToast("Error liking post: " + err.message);
     }
 }
-
-// --- Unlike Functionality ---
 async function unlikePost(postUri, postCid, postRkey, likeRkey, originalLikes) {
     if (!authSession) return showToast("You must be logged in to unlike a post.");
 
@@ -479,13 +475,13 @@ async function unlikePost(postUri, postCid, postRkey, likeRkey, originalLikes) {
     }
 }
 
-// --- Reply Functionality ---
+
 function toggleReplyBox(rkey) {
     const box = document.getElementById(`reply-container-${rkey}`);
     box.classList.toggle('hidden');
 }
 
-// --- Reply Functionality ---
+
 async function submitReply(parentUri, parentCid, rootUri, rootCid, rkey) {
     if (!authSession) return showToast("You must be logged in to reply.", "error");
 
@@ -495,7 +491,7 @@ async function submitReply(parentUri, parentCid, rootUri, rootCid, rkey) {
     if (!text) return showToast("Reply cannot be empty!", "error");
 
     try {
-        // Generate facets for the reply text before posting
+        
         const generatedFacets = await parseFacets(text);
 
         const res = await fetch(`${AUTH_API_BASE}/com.atproto.repo.createRecord`, {
@@ -511,7 +507,7 @@ async function submitReply(parentUri, parentCid, rootUri, rootCid, rkey) {
                     $type: "app.bsky.feed.post",
                     text: text,
                     createdAt: new Date().toISOString(),
-                    // Inject facets here if the parser found any
+                    
                     ...(generatedFacets && { facets: generatedFacets }), 
                     reply: {
                         root: { uri: rootUri, cid: rootCid },
@@ -536,8 +532,7 @@ async function submitReply(parentUri, parentCid, rootUri, rootCid, rkey) {
     }
 }
 
-// --- Create New Post Function ---
-// --- Create New Post Function ---
+
 async function submitPost() {
     if (!authSession) return showToast("You must be logged in to post.", "error");
 
@@ -547,7 +542,7 @@ async function submitPost() {
     if (!text) return showToast("Post cannot be empty!", "error");
 
     try {
-        // Generate facets right before posting
+        
         const generatedFacets = await parseFacets(text);
 
         const res = await fetch(`${AUTH_API_BASE}/com.atproto.repo.createRecord`, {
@@ -563,7 +558,7 @@ async function submitPost() {
                     $type: "app.bsky.feed.post",
                     text: text,
                     createdAt: new Date().toISOString(),
-                    // Inject facets if we found any
+                    
                     ...(generatedFacets && { facets: generatedFacets }) 
                 }
             })
@@ -587,7 +582,7 @@ async function submitPost() {
     }
 }
 
-// --- Lightbox Functions ---
+
 window.openLightbox = function(src) {
     const lb = document.getElementById('lightbox');
     const img = document.getElementById('lightboxImg');
@@ -606,7 +601,7 @@ window.closeLightbox = function() {
     }
 };
 
-// --- Load Thread/Replies Function ---
+
 async function toggleAndLoadReplies(postUri, rkey) {
     const container = document.getElementById(`thread-container-${rkey}`);
 
@@ -670,7 +665,7 @@ async function toggleAndLoadReplies(postUri, rkey) {
     }
 }
 
-// --- Rich Text & Facet Handling ---
+
 function escapeHTML(str) {
     return str.replace(/[&<>'"]/g, 
         tag => ({
@@ -734,20 +729,20 @@ function toggleTextClamped(elementId, btn) {
         btn.innerText = 'Read More';
     }
 }
- // --- Rich Text Facet Generator ---
+ 
 async function parseFacets(text) {
     const facets = [];
     const encoder = new TextEncoder();
 
-    // Helper to get the exact UTF-8 byte index
+    
     const getByteStart = (index) => encoder.encode(text.substring(0, index)).byteLength;
 
-    // 1. Parse Links (URLs)
+    
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     let match;
     while ((match = urlRegex.exec(text)) !== null) {
         let uri = match[0];
-        // Strip trailing punctuation often caught in URLs
+        
         if (/[.,;!?]$/.test(uri)) uri = uri.slice(0, -1);
         
         const byteStart = getByteStart(match.index);
@@ -759,7 +754,7 @@ async function parseFacets(text) {
         });
     }
 
-    // 2. Parse Hashtags
+    
     const tagRegex = /(?:^|\s)(#[^\s]+)/g; 
     while ((match = tagRegex.exec(text)) !== null) {
         let tagWithHash = match[1];
@@ -776,19 +771,19 @@ async function parseFacets(text) {
         });
     }
 
-    // 3. Parse Mentions (Requires API call to resolve DID)
+    
     const mentionRegex = /(?:^|\s)(@[a-zA-Z0-9.-]+)/g;
     while ((match = mentionRegex.exec(text)) !== null) {
         let mentionWithAt = match[1];
-        mentionWithAt = mentionWithAt.replace(/[.,;!?]+$/, ''); // Strip trailing punctuation
-        const handle = mentionWithAt.substring(1); // Remove the '@'
+        mentionWithAt = mentionWithAt.replace(/[.,;!?]+$/, ''); 
+        const handle = mentionWithAt.substring(1); 
         const matchIndex = match[0].indexOf(mentionWithAt) + match.index;
         
         const byteStart = getByteStart(matchIndex);
         const byteEnd = byteStart + encoder.encode(mentionWithAt).byteLength;
         
         try {
-            // AT Protocol requires the user's DID for a mention, not just their handle
+            
             const res = await fetch(`https://public.api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=${handle}`);
             if (res.ok) {
                 const data = await res.json();
