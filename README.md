@@ -14,7 +14,8 @@ LycaClient is an open-source, lightweight Bluesky client built on a simple premi
 * **Authentication**: Login securely with App Passwords to Like, Reply, and Post.
 * **Infinite Scroll**: Smooth, cursor-based pagination that loads only when you're ready.
 * **Verification-Aware**: Visual indicators for verified accounts and trusted verifiers and robust verification system adopted from Bsky.
-* **Responsive Post, Comment and Like Features**: they are really fast here. 
+* **Responsive Post, Comment and Like Features**: they are really fast here.
+* **No need of making an account**: You can view accounts and their posts without even having a Bsky account by just searching(but of course reactions and posting needs logging in). 
 
 ---
 
