@@ -1,4 +1,4 @@
-#LycaClient v1.2
+# LycaClient v1.2
 
 LycaClient is an open-source, lightweight Bluesky client built on a simple premise: You should find people, not the other way around. There is no "Discover" tab here. There is no "For You" algorithm. There is just a search bar and the people you actually want to see.
 
