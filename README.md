@@ -55,3 +55,4 @@ hey the third of v1 is here, actually making this one was faster then v1.2. this
 
 ---
 
+this project is open-source. Feel free to fork it, break it, and make it yours. :)
