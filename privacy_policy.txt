@@ -1,3 +1,0 @@
-i don't want your data policy.
-
-look, i built LycaClient because i wanted a way to browse the AT Protocol without an algorithm breathing down my neck, and i treat your privacy with that same 'leave me alone' energy. i don't have a database, i don't use trackers, and i definitely don't want your password; when you log in, your credentials go straight to the official Bluesky/ATProto servers to get a temporary access token that lives only in your browser's memory while the tab is open. Since this is a search-first tool, i'm not logging what you look for or who you follow—you're just talking directly to the public Bluesky API through this interface. Basically, i've provided the window, but i’m not standing behind you watching what you're looking at.
